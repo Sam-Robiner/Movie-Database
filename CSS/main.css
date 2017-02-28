@@ -1,0 +1,49 @@
+#banner {
+	width: 100%;
+	text-align: center;
+	background-image: url(../assets/background2.jpg);
+	background-size: cover;
+	padding: 1.2em;
+	color: antiquewhite;
+	font-size: 64px;
+	font-family: fantasy;
+}
+
+#film_list {
+	margin: auto;
+}
+
+
+.fname {
+	float: inherit;
+	display: block;
+}
+
+
+.film_info div {
+	display: inline-flex;
+	margin: 5px;
+}
+
+
+
+
+.film_info {
+	border: 3px solid black;
+	margin: 1em 0em;
+	padding-top: 2em;
+	padding-bottom: 2em;
+	border-radius: 8px;
+	border-bottom-width: 5px;
+	border-left-width: 5px;
+}
+
+#body_main {
+	width: 85%;
+	margin: auto;
+}
+
+.invalid {
+	background: rgba(178, 34, 34, 0.5);
+	color: black;
+}
