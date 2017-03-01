@@ -1,3 +1,5 @@
 Django Unchained|Jamie Foxx, Leonardo DiCaprio|Quentin Tarantino|Comedy|R
 Pulp Fiction|John Travolta, Samuel L. Jackson|Quentin Tarantino|Comedy|R
  Good Will Hunting|Sam Robiner, Zubyn D'Costa|Zoee D'Costa|Comedy|PG13
+Shrek|Mike Myers, Eddie Murphy|Andrew Adamson|Comedy|PG
+Black Mass|Johnny Depp|Scott Cooper|Drama|R

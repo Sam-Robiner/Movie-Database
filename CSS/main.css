@@ -1,7 +1,7 @@
 #banner {
 	width: 100%;
 	text-align: center;
-	background-image: url(../assets/background2.jpg);
+	background-image: url(../Assets/background2.jpg);
 	background-size: cover;
 	padding: 1.2em;
 	color: antiquewhite;
@@ -14,9 +14,10 @@
 }
 
 
-.fname {
+.fname div{
 	float: inherit;
 	display: block;
+	font-style: bold;
 }
 
 

@@ -4,26 +4,16 @@
     <meta charset="utf-8" />
     <title>Homepage</title>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <?php
-        $style_path = 'css/main.css';
-        $version = filemtime( $style_path);
-        echo "<link rel='stylesheet' href='$style_path?ver=$version'>";
+    <link rel="stylesheet" type="text/css" href="CSS/main.css">
+    <script src="Scripts/validate.js"></script>
 
-        $script_path1 = 'Scripts/validate.js';
-        $version = filemtime( $script_path1);
-        echo "<script src='$script_path1?ver=$version'></script>";
-
-        $script_path2 = 'Scripts/search.js';
-        $version = filemtime( $script_path1);
-        echo "<script src='$script_path2?ver=$version'></script>";
-    ?>
 </head>
 <body>
     <div id="banner">Sam's Film Database</div>
     <div id=body_main>
     <div id="film_form">
         <h1>Add Film</h1>
-        <form name="add_film" action="homepage.php" method="post" onsubmit="return validate_film(this);">
+        <form name="add_film" action="index.php" method="post" onsubmit="return validate_film(this);">
             <table id="form_add">
             <tr>
                 <td>Film title:</td>
@@ -72,17 +62,16 @@
 
     <div id="search_form">
         <h1>Search film database</h1>
-        <label for="search_field_select">Search by: </label>
-        <select id="search_field_select">
-            <option value="" selected=""></option>
-            <option value="fname">Name</option>
-            <option value="factors">Actor</option>
-            <option value="fdirector">Director</option>
-            <option value="fgenre">Genre</option>
-            <option value="frating">Rating</option>
-        </select>
-        <input type="text" id="search_input">
-        <button id="search_button">Search</button>
+        <form name="search_film" action="index.php" method="post">
+            <label for="search_field_select">Search by: </label>
+            <select id="search_field_select">
+                <option value="empty" selected=""></option>
+                <option value="fname_search">Name</option>
+                <option value="fdirector_search">Director</option>
+            </select>
+            <input type="text" name="search_input" id="search_input">
+            <input type="submit" name="search" value="search">
+        </form>
     </div>
 
 
@@ -99,7 +88,31 @@
             while (!feof($file_ptr)) {
                 $line = fgets($file_ptr);
                 $film = explode($delimiter, $line);
-                $films[] = $film;
+                if (isset($_POST['search']) && isset($_POST['search_field_select']) && $_POST['search_field_select'] != "empty") {
+                    //Searching
+                    if ($_POST['search_field_select'] == 'fname_search') {
+                        //Search by title
+                        $input = $_POST["search_input"];
+                        $pattern = '/^[$input]/';
+                        if (preg_match($pattern, $film[0])) {
+                            $films[] = $film;
+                        }
+                    }
+
+                    if ($_POST['search_field_select'] == 'fdirector_search') {
+                        //Search by director
+                        $input = $_POST["search_input"];
+                        $pattern = '/^[$input]/';
+                        if (preg_match($pattern, $film[2])) {
+                            $films[] = $film;
+                        }
+                    }
+
+                } else {
+                    //No search -> show no matter what
+                    $films[] = $film;
+                }
+                
             }
 
             foreach($films as $film) {
@@ -116,5 +129,6 @@
         ?>
     </div>
     </div>
+    <a href="citation.html">Banner image citation</a>
 </body>
 </html>
